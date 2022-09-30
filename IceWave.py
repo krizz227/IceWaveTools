@@ -78,8 +78,6 @@ def CS(H,L, g = 9.81,uc = True):
 
 def GetVariables():
     
-    """This should probably be improved upon"""
-    
     gaus = 0.1
     gaus = 1
     
@@ -102,7 +100,7 @@ def GetVariables():
 #------------------------------------
     # h = 0.01
     h = 0.17
-    # h = 0.1 #for the stres test
+    # h = 0.1
     # h = 0.2
     # h = 0.4
 #------------------------------------
@@ -128,7 +126,7 @@ def GetVariables():
     
     L = xi**(1/4)
     #-----------------------------------
-#   think it is best just to leav the B = 0.41 , though takizawa makes a case for B = 0.1
+
 
     B=0.41
 #------------------------------------
@@ -180,7 +178,7 @@ def GetOperators(l,m,fname = 'Gaussian',arg = 'gaus'):
     freq = fft.fftfreq(m,dx/2/np.pi)
     
     ksi1,ksi2 = np.meshgrid(freq,freq)
-    # the ksi of zero canot be equal to zero or else there wil be a divide by zero error
+    
     
     ksi1[:,0] = 0.00001
     ksi2[0,:] = 0.00001
@@ -231,7 +229,7 @@ def GetOperators(l,m,fname = 'Gaussian',arg = 'gaus'):
 
 
 
-def CalculateStress(Nk,l,m):
+def CalculateStrain(Nk,l,m):
     
     
     
@@ -302,7 +300,7 @@ def LVin(x_0,v,t,l,m):
     
 def LVinEnd(x_end,v,t,l,m):
     
-    """ parameters: x_end, v , t,l,m returns: I_1,I_2 the integrals afther t at the end point """
+    """ parameters: x_end, v , t,l,m returns: I_1,I_2 the integrals afther t at the end point, to get the solution eta take the first fft.ifftn(I[0]-I[1])"""
     x_0 = -v*t+x_end
     
     return LVin(x_0,v,t,l,m)
