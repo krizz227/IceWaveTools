@@ -1,0 +1,7 @@
+This code gives the elastic wave response from a load moving on an arbitrary path. The ExampleLinearVelocity.py file gives an example of how the linear velocity is handled, and the ExampleCircularPath.py is the circular path, though by modifying the X_1 and X_2 vectors one could consider any path.
+First, put the IceWave.py into one folder and then create a new file and import the IceWave library.
+
+Most of the work is done in the I_1 and I_2 integrals, as explained in the article [REFERENCE], but the command EtaofI(I,n = 1) can be used to compute the displacement eta if I = [I[0],I[1]] is given and for n = 2 the full time-series. To get the Fourier transformed solution take I[n][0]-I[n][1] for the GP command. I[0]-I[1] for the LVinEnd. GP is the general path, and one can get the full time-series solution, and LVinEnd returns the linear velocity case but only at the time t.
+One can change the pressure distribution by either putting a new function into Fhatk, in the GetOperator(l,m) function manually, or by changing the name fname = “Dirac” to something else like "Gaussian", the default is the Dirac distribution. (Warning this does not give a pointwise convergent solution of the strain)
+
+In order to merge two time-series solutions I_1 and T_1 together with I_2 and  T_2 by using the command Merge(I_1,T_1, I_2,T_2,l,m). This returns the new T and I vector. If one only wants to add an initial condition to a time series defined by Iend T, one should use the GlueSol(Istart,Iend,T,l,m). 
