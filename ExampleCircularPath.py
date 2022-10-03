@@ -5,7 +5,7 @@ Created on Mon Oct  3 16:55:01 2022
 @author: kriog
 """
 
-import IceWaveTools2 as iwt 
+import IceWave as iwt 
 import numpy  as np
 import matplotlib.pyplot as plt
 
