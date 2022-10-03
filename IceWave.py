@@ -426,3 +426,12 @@ def GP(X_1,X_2,l,m,T):
         
         
     return I
+
+def EtaofI(I,n = 1):
+    """returns the displacement eta, from the two integrals, using the methods returning a time series set n = 2"""
+    if n == 1:
+        return fft.ifftn(I[0]-I[1])
+    if n == 2:
+        return [fft.ifftn(k[0]-k[1]) for k in I]
+    
+    raise Exception("the number n:" + str(n) + "does not correspond to the datatype try n = 1,2. Or the format of I is not correct"  )
